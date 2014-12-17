@@ -1,0 +1,48 @@
+<h1>Listing articles</h1>
+
+<div class="container">
+<div class="row">
+		<div class="col-md-2">
+			<h4>Title</h4>
+		</div>
+		<div class="col-md-6">
+			<h4>Content</h4>
+		</div>
+		<div class="col-md-2">
+			<h4>Actions</h4>
+		</div>
+	</div>
+<% @articles.each do |article| %>
+	<div class="row">
+		<div class="col-md-2">
+   		
+		  	<p><%= article.title %></p>
+		</div>
+		<div class="col-md-6">
+			<p><%= article.content %></p>
+     	</div>
+     	<div class="col-md-3">
+     		<p>
+        		<%= link_to 'Show', article %>
+        		<%= link_to 'Edit', edit_article_path(article) %>
+        		<%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      </div>
+   </div>
+   <% end %>
+
+
+<br>
+
+<%= link_to 'New Article', new_article_path %>
+<br><br>
+<h4>Search</h4>
+<%= form_for articles_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<h3>Results</h3>
+<%= @check.inspect %> 
+<br>
+<%= @results.inspect %>
